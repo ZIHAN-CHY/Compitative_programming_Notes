@@ -1,6 +1,7 @@
-#include <iostream>
+/*Using Disjoint_set_Union*/
 #include<bits/stdc++.h>
 using namespace std;
+
 int parent[1000];
 int siz[1000];
 
@@ -24,21 +25,8 @@ void union_sets(int a, int b) {
     }
 }
 
+
+
 int main(){
-   for(int i=1; i<=8 ; i++){
-      make_set(i);
-   }
-   for(int i=1 ; i<=6 ; i++){
-     int a,b;
-     cin>>a>>b;
-    union_sets(a,b);
-   } 
-
-    int cnt_component=0;
-   for(int i=1 ; i<=8 ; i++){
-     if(find_set(i)==i ) cnt_component++;
-   }
-   cout << cnt_component << endl;
-
 
 }

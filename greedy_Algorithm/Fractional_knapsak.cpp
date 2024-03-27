@@ -44,3 +44,9 @@ int main(){
     sump+= (double)((w-sumw)*(double)pr[i].second.first)/(double)pr[i].second.second;
     cout << sump << endl;
 }
+
+/*
+5 10
+3 3 2 5 1
+10 15 10 12 8
+*/

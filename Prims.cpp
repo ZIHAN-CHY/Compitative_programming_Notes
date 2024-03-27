@@ -1,4 +1,4 @@
-            /*Prims Algorithm*/
+            /*******************Prims Algorithm******************/
 /* 
 (1) Initialize keys of all vertices as infinite and 
    parent of every vertex as -1.
@@ -31,7 +31,7 @@
 (6) Print MST edges using parent array.
 */
 
-/***********************Implementation********************/
+            /***********************Implementation********************/
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -53,24 +53,26 @@ void clr(){
 }
 
 int MST(int v){
-    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>>pq;
+    priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>, greater<pair<int,pair<int,int>>>>pq;
    
-    pq.push({0,0}); // wt,node
+    pq.push({0,{0,-1}}); // wt,node
     int sum=0;
     while(!pq.empty()){
         auto it = pq.top();
         pq.pop();
         int wt = it.first;
-        int node = it.second;
+        int node = it.second.first;
+        int pr = it.second.second;
+
         if(vis[node]) continue;
         vis[node]= true;
+        parent[node]= pr;
         sum+=wt;
         for(int i=0 ; i<adj[node].size(); i++){
             int childnode = adj[node][i].second;
             int wtc = adj[node][i].first;
             if(!vis[childnode]){
-                pq.push({wtc,childnode});
-
+                pq.push({wtc,{childnode,node}});
             }
         }
     }
@@ -88,7 +90,11 @@ int main(){
         adj[u].push_back({w,v});
         adj[v].push_back({w,u});
     }
-    cout << MST(v) << endl;
+    cout << "cost : " << MST(v) << endl;
+    cout << "Path : " << endl;
+    for(int i=1 ; i<v; i++){
+        cout << i <<  " " <<   parent[i] << endl;
+    }
 }
 /*
 6 5

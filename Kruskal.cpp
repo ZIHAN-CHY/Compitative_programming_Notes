@@ -62,15 +62,17 @@ int main(){
         make_set(i);
     }
     int cost=0;
+    cout << "Path :" << endl;
     for(int i=0; i<adj.size(); i++){
         int wt = adj[i].first;
         int u = adj[i].second.first;
         int v = adj[i].second.second;
         if(find_set(u) == find_set(v)) continue;
         union_sets(u,v);
+        cout << u << " " << v << endl;
         cost+=wt;
     }
-    cout << cost << endl;
+    cout << "Cost : "<< cost << endl;
 
 }
 
